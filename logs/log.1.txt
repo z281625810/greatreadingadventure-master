@@ -1,0 +1,50 @@
+2016-05-04 13:09:01.9328|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:11:17.3651|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:12:05.5742|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:12:15.8006|ERROR|GRA.SRP.ControlRoom.Configure|Error in database configuration: An error occurred accessing as the <strong>database owner user (fengs)</strong>: Cannot open database "SRP" requested by the login. The login failed.
+Login failed for user 'fengs'.
+2016-05-04 13:13:22.8481|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:13:22.8691|ERROR|GRA.SRP.ControlRoom.Configure|Database configuration problem: The 'fengs' user is not in the db_datareader role for btvsrp.
+2016-05-04 13:13:22.8691|ERROR|GRA.SRP.ControlRoom.Configure|Database configuration problem: The 'fengs' user is not in the db_datawriter role for btvsrp.
+2016-05-04 13:13:27.4212|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:13:43.8680|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:14:30.4938|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:14:30.5909|INFO|GRA.SRP.ControlRoom.Configure|Creating database schema
+2016-05-04 13:14:30.9015|ERROR|GRA.SRP.ControlRoom.Configure|Error: There is already an object named 'app_Avatar_Delete' in the database. data: System.Collections.ListDictionaryInternal on query: 
+CREATE PROCEDURE [dbo].[app_Avatar_Delete] @AID INT,
+	@TenID INT = NULL
+AS
+DELETE
+FROM [Avatar]
+WHERE AID = @AID
+	AND TenID = @TenID
+
+2016-05-04 13:14:30.9015|INFO|GRA.SRP.ControlRoom.Configure|Finished processing CreateSchema.sql: 2 queries and 1 issues.
+2016-05-04 13:14:30.9015|ERROR|GRA.SRP.ControlRoom.Configure|Final configuration error: Database error occurred, aborting: Error: There is already an object named 'app_Avatar_Delete' in the database. data: System.Collections.ListDictionaryInternal on query: 
+CREATE PROCEDURE [dbo].[app_Avatar_Delete] @AID INT,
+	@TenID INT = NULL
+AS
+DELETE
+FROM [Avatar]
+WHERE AID = @AID
+	AND TenID = @TenID
+
+2016-05-04 13:14:59.1746|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:15:14.1412|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:16:14.8219|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:16:15.6737|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:16:37.7401|INFO|GRA.SRP.ControlRoom.Configure|Error A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. The specified LocalDB instance does not exist.
+) selecting programs, proceeding with configuration.
+2016-05-04 13:16:47.7723|ERROR|GRA.SRP.ControlRoom.Configure|Error in database configuration: An error occurred accessing as the <strong>database owner user (fengs)</strong>: Cannot open database "btvsrp1" requested by the login. The login failed.
+Login failed for user 'fengs'.
