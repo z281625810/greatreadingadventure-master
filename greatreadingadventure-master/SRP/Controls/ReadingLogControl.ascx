@@ -14,23 +14,24 @@
     </div>
     <div class="row">
         <div class="form-inline text-center">
-            <div class="col-xs-12" style="display: none;" id="readingLogControlMessageError">
+             <div class="col-xs-12" style="display: none;" id="readingLogControlMessageError">
                 <p class="text-danger" style="font-weight: bold;">Please enter how much you've read.</p>
             </div>
             <div class="col-xs-12">
                 <div class="form-group" id="readingLogControlFormGroup">
                     <label for="readingActivityField" runat="server" id="countSubmittedLabel" cssclass="readinglog-spacing">
                         <asp:Label runat="server" Text="readinglog-reading-prompt"></asp:Label></label>
-                    <div class="block-center" style="display: inline-block;">
+                  <div class="block-center" style="display: inline-block;">
                         <asp:TextBox ID="readingActivityField"
                             runat="server"
                             CssClass="form-control"
                             MaxLength="3"
                             Width="4em"></asp:TextBox>
-                    </div>
+                    </div> 
                     <asp:DropDownList ID="activityTypeSelector" CssClass="form-control readinglog-spacing" runat="server"></asp:DropDownList>
                     <label class="readinglog-spacing">
-                        <asp:Label runat="server" ID="activityTypeSingleLabel" Visible="false"></asp:Label></label>
+                        <asp:Label runat="server" ID="activityTypeSingleLabel" Visible="false"></asp:Label>
+                    </label>
 
                     <asp:LinkButton runat="server"
                         CssClass="btn btn-info btn-lg reading-log-submit"

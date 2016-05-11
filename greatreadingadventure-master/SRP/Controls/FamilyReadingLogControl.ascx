@@ -24,9 +24,12 @@
                             MaxLength="3"
                             Width="4em"></asp:TextBox>
                     </div>
-                    <asp:DropDownList ID="activityTypeSelector" CssClass="form-control family-readinglog-spacing" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="activityTypeSelector"  CssClass="form-control family-readinglog-spacing" runat="server"></asp:DropDownList>
                     <label class="family-readinglog-spacing">
-                        <asp:Label runat="server" ID="activityTypeSingleLabel" Visible="false"></asp:Label></label>
+                       
+                        <asp:Label runat="server" ID="activityTypeSingleLabel" Visible="false"></asp:Label>
+                        
+                    </label>
 
                     <asp:LinkButton runat="server"
                         CssClass="btn btn-info btn-lg reading-log-submit"

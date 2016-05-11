@@ -16,6 +16,7 @@ using System.Text;
 namespace GRA.SRP.Controls {
     public partial class PatronRegistration : System.Web.UI.UserControl {
         private CustomRegistrationFields customFields;
+      
         protected CustomRegistrationFields CustomFields
         {
             get
@@ -105,7 +106,7 @@ namespace GRA.SRP.Controls {
 
                 var sDOB = ((TextBox)rptr.Items[0].FindControl("DOB")).Text;
                 var sAge = ((TextBox)rptr.Items[0].FindControl("Age")).Text;
-                var sGrade = ((TextBox)rptr.Items[0].FindControl("SchoolGrade")).Text;
+                var sGrade = ((DropDownList)rptr.Items[0].FindControl("SchoolGrade")).SelectedValue;
 
                 var age = -1;
                 if(!string.IsNullOrEmpty(sDOB)) {
@@ -128,14 +129,43 @@ namespace GRA.SRP.Controls {
                     // single program - just select the program
                     pgmDD.SelectedIndex = 1;
                 } else if(pgmDD.SelectedValue == "0" || string.IsNullOrEmpty(pgmDD.SelectedValue)) {
-                    var defaultProgram = Programs.GetDefaultProgramForAgeAndGrade(age, grade).ToString();
+
+                    /*var defaultProgram = Programs.GetDefaultProgramForAgeAndGrade(age, grade).ToString();
+                    
                     if(pgmDD.Items.FindByValue(defaultProgram) != null) {
                         pgmDD.SelectedValue = defaultProgram;
+                    }*/
+                    var defaultProgram = 0;
+                    if (grade == -1)
+                    {
+                        defaultProgram = 1;
                     }
+                    else if (grade >= 0 && grade <= 5)
+                    {
+                        defaultProgram = 2;
+                    }
+                    else if (grade >= 6 && grade <= 8)
+                    {
+                        defaultProgram = 3;
+                    }
+                    else
+                    {
+                        defaultProgram = 4;
+                    }
+                    pgmDD.SelectedIndex = defaultProgram;
+
+
                 }
 
+                var curPanel = rptr.Items[0].FindControl("Panel" + curStep.ToString());
+                var newPanel = rptr.Items[0].FindControl("Panel" + (curStep + 2).ToString());
 
-                if(MasterPID.Text.Length > 0)    // Already registered the master account and now looping for family accounts
+                curPanel.Visible = false;
+                newPanel.Visible = true;
+
+                Step.Text = (curStep + 2).ToString();
+/*
+                if (MasterPID.Text.Length > 0)    // Already registered the master account and now looping for family accounts
                 {
                     var curPanel = rptr.Items[0].FindControl("Panel" + curStep.ToString());
                     var newPanel = rptr.Items[0].FindControl("Panel" + (curStep + 2).ToString());
@@ -163,7 +193,7 @@ namespace GRA.SRP.Controls {
 
                         Step.Text = (curStep + 2).ToString();
                     }
-                }
+                }*/
 
 
             }
@@ -333,7 +363,8 @@ namespace GRA.SRP.Controls {
                 ((TextBox)rptr.Items[0].FindControl("Password2")).Attributes.Add("Value", string.Empty);
                 ((TextBox)rptr.Items[0].FindControl("Age")).Text = string.Empty;
                 ((TextBox)rptr.Items[0].FindControl("DOB")).Text = string.Empty;
-                ((TextBox)rptr.Items[0].FindControl("SchoolGrade")).Text = string.Empty;
+                //((TextBox)rptr.Items[0].FindControl("SchoolGrade")).Text = string.Empty;
+                ((DropDownList)rptr.Items[0].FindControl("SchoolGrade")).SelectedValue = string.Empty;
                 ((DropDownList)rptr.Items[0].FindControl("ProgID")).SelectedValue = string.Empty;
                 ((TextBox)rptr.Items[0].FindControl("FirstName")).Text = string.Empty;
                 ((TextBox)rptr.Items[0].FindControl("MiddleName")).Text = string.Empty;
@@ -427,7 +458,15 @@ namespace GRA.SRP.Controls {
 
                 var Age = int.Parse(RegistrationAge.Text);
 
-                if(MasterPID.Text.Length > 0)    // Already registered the master account and now looping for family accounts
+                var curPanel = rptr.Items[0].FindControl("Panel" + curStep.ToString());
+                var newPanel = rptr.Items[0].FindControl("Panel" + (curStep - 2).ToString());
+
+                curPanel.Visible = false;
+                newPanel.Visible = true;
+
+                Step.Text = (curStep - 2).ToString();
+                /*
+                if (MasterPID.Text.Length > 0)    // Already registered the master account and now looping for family accounts
                 {
                     var curPanel = rptr.Items[0].FindControl("Panel" + curStep.ToString());
                     var newPanel = rptr.Items[0].FindControl("Panel" + (curStep - 2).ToString());
@@ -455,7 +494,7 @@ namespace GRA.SRP.Controls {
 
                         Step.Text = (curStep - 2).ToString();
                     }
-                }
+                }*/
 
 
             }
@@ -465,7 +504,7 @@ namespace GRA.SRP.Controls {
             if(curStep == 2) {
                 var sDOB = ((TextBox)rptr.Items[0].FindControl("DOB")).Text;
                 var sAge = ((TextBox)rptr.Items[0].FindControl("Age")).Text;
-                var sGrade = ((TextBox)rptr.Items[0].FindControl("SchoolGrade")).Text;
+                var sGrade = ((DropDownList)rptr.Items[0].FindControl("SchoolGrade")).SelectedValue;
 
                 var age = -1;
                 if(!string.IsNullOrEmpty(sDOB)) {
@@ -485,7 +524,26 @@ namespace GRA.SRP.Controls {
 
                 var pgmDD = (DropDownList)rptr.Items[0].FindControl("ProgID");
                 if(pgmDD.SelectedValue == "0" || string.IsNullOrEmpty(pgmDD.SelectedValue)) {
-                    pgmDD.SelectedValue = Programs.GetDefaultProgramForAgeAndGrade(age, grade).ToString();
+                    //pgmDD.SelectedValue = Programs.GetDefaultProgramForAgeAndGrade(age, grade).ToString();
+                    var defaultProgram = 0;
+                    if (grade == -1)
+                    {
+                        defaultProgram = 1;
+                    }
+                    else if (grade >= 0 && grade <= 5)
+                    {
+                        defaultProgram = 2;
+                    }
+                    else if (grade >= 6 && grade <= 8)
+                    {
+                        defaultProgram = 3;
+                    }
+                    else
+                    {
+                        defaultProgram = 4;
+                    }
+                    pgmDD.SelectedIndex = defaultProgram;
+
                 }
 
 
@@ -519,7 +577,7 @@ namespace GRA.SRP.Controls {
                 var famAcct = (DropDownList)rptr.Items[0].FindControl("FamilyAccount");
                 p.IsMasterAccount = (famAcct.SelectedValue == "Yes" && MasterPID.Text.Length == 0);
 
-                p.SchoolGrade = ((TextBox)(rptr.Items[0]).FindControl("SchoolGrade")).Text;
+                p.SchoolGrade = ((DropDownList)(rptr.Items[0]).FindControl("SchoolGrade")).SelectedValue;
                 p.FirstName = ((TextBox)(rptr.Items[0]).FindControl("FirstName")).Text;
                 p.MiddleName = ((TextBox)(rptr.Items[0]).FindControl("MiddleName")).Text;
                 p.LastName = ((TextBox)(rptr.Items[0]).FindControl("LastName")).Text;
@@ -693,7 +751,7 @@ namespace GRA.SRP.Controls {
             var st = (DropDownList)(rptr.Items[0]).FindControl("SchoolType");
             var sd = (DropDownList)(rptr.Items[0]).FindControl("SDistrict");
             var ag = (TextBox)(rptr.Items[0]).FindControl("Age");
-            var gr = (TextBox)(rptr.Items[0]).FindControl("SchoolGrade");
+            var gr = (DropDownList)(rptr.Items[0]).FindControl("SchoolGrade");
 
             var scVal = sc.SelectedValue;
             sc.Items.Clear();
@@ -735,6 +793,7 @@ namespace GRA.SRP.Controls {
 
         protected void TermsOfUseflag_ServerValidate(object source, ServerValidateEventArgs args) {
             args.IsValid = ((CheckBox)(rptr.Items[0]).FindControl("TermsOfUseflag")).Checked;
+
         }
 
         public string GoToUrl

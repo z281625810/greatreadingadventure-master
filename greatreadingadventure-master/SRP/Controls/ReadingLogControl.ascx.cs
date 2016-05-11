@@ -67,8 +67,8 @@ namespace GRA.SRP.Controls {
                     } else {
                         activityTypeSelector.Attributes.Remove("style");
                         activityTypeSelector.Attributes.Add("style", "display: none;");
-                        activityTypeSingleLabel.Text = singleOption.Text;
-                        activityTypeSingleLabel.Visible = true;
+                        //activityTypeSingleLabel.Text = "";
+                        //activityTypeSingleLabel.Visible = true;
                     }
                 } else {
                     activityTypeSingleLabel.Visible = false;
@@ -107,7 +107,7 @@ namespace GRA.SRP.Controls {
                     maxAmountForLogging = SRPSettings.GetSettingValue("MaxMin").SafeToInt();
                     break;
             }
-            if(intCount > maxAmountForLogging) {
+            if (intCount > maxAmountForLogging) {
                 Session[SessionKey.PatronMessage] = string.Format("That's an awful lot of reading! You can only submit {0} {1} at a time.",
                                                                   maxAmountForLogging,
                                                                   ((ActivityType)int.Parse(selectedActivityType)).ToString());
@@ -125,15 +125,18 @@ namespace GRA.SRP.Controls {
             // convert pages/minutes/etc. to points
             var pc = new ProgramGamePointConversion();
             pc.FetchByActivityId(programGameId, int.Parse(activityTypeSelector.SelectedValue));
-            // round up to ensure they get at least 1 point
-            decimal computedPoints = intCount * pc.PointCount / pc.ActivityCount;
-            points = (int)Math.Ceiling(computedPoints);
 
+            // only one point at a time, one point for a day, because only log once each day
+            //decimal computedPoints = intCount * pc.PointCount / pc.ActivityCount;
+            //points = (int)Math.Ceiling(computedPoints);
+            points = 1;
             // ensure they aren't over teh day total
             var allPointsToday = PatronPoints.GetTotalPatronPoints(patronId, DateTime.Now);
-            int maxPointsPerDayForLogging = SRPSettings.GetSettingValue("MaxPtsDay").SafeToInt();
-            if(intCount + allPointsToday > maxPointsPerDayForLogging) {
-                Session[SessionKey.PatronMessage] = "Sorry but you have already reached the maximum amount of points that you can log in a day. Keep reading and come back tomorrow!";
+            //var allPointsToday = 1;
+            //int maxPointsPerDayForLogging = SRPSettings.GetSettingValue("MaxPtsDay").SafeToInt();
+            int maxPointsPerDayForLogging = 1;
+            if (allPointsToday == maxPointsPerDayForLogging) {
+                Session[SessionKey.PatronMessage] = "Sorry but you have already submited your log once today. You can only earn one point a day. Keep reading and come back tomorrow!";
                 Session[SessionKey.PatronMessageLevel] = PatronMessageLevels.Warning;
                 Session[SessionKey.PatronMessageGlyphicon] = "exclamation-sign";
                 return;

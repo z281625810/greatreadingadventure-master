@@ -11,6 +11,10 @@
     function TermsOfUseflagValidation(source, arguments) {
         arguments.IsValid = $(".gra-terms-of-use-container input:checkbox").is(':checked');
     }
+    function ShareFlagValidation(source, arguments) {
+        arguments.IsValid = $(".gra-share-container input:checkbox").is(':checked');
+    }
+
 </script>
 <asp:Label ID="Step" runat="server" Text="1" Visible="False"></asp:Label>
 <asp:Label ID="RegistrationAge" runat="server" Text="0" Visible="False"></asp:Label>
@@ -50,6 +54,8 @@
                     </div>
                 </div>
             </asp:Panel>
+
+            <%--school grade --%>
             <asp:Repeater ID="rptr" runat="server" OnItemDataBound="rptr_ItemDataBound">
                 <ItemTemplate>
                     <asp:Panel ID="Panel1" runat="server" Visible="True">
@@ -59,7 +65,24 @@
                             </label>
 
                             <div class="col-sm-6">
-                                <asp:TextBox ID="SchoolGrade" runat="server" CssClass="form-control required-asterisk" data-asterisk="SchoolGradeReq"></asp:TextBox>
+                                <%-- <asp:TextBox ID="SchoolGrade" runat="server" CssClass="form-control required-asterisk" data-asterisk="SchoolGradeReq"></asp:TextBox> 
+                                    --%>
+                                <asp:DropDownList ID="SchoolGrade" runat="server" CssClass="form-control required-asterisk" data-asterisk="SchoolGradeReq">
+                                    <asp:ListItem Value="-1" Text="Pre-K (all early learners)"></asp:ListItem>
+                                    <asp:ListItem Value="0" Text="K"></asp:ListItem>
+                                    <asp:ListItem Value="1" Text="1st"></asp:ListItem>
+                                    <asp:ListItem Value="2" Text="2nd"></asp:ListItem>
+                                    <asp:ListItem Value="3" Text="3rd"></asp:ListItem>
+                                    <asp:ListItem Value="4" Text="4th"></asp:ListItem>
+                                    <asp:ListItem Value="5" Text="5th"></asp:ListItem>
+                                    <asp:ListItem Value="6" Text="6th"></asp:ListItem>
+                                    <asp:ListItem Value="7" Text="7th"></asp:ListItem>
+                                    <asp:ListItem Value="8" Text="8th"></asp:ListItem>
+                                    <asp:ListItem Value="9" Text="9th"></asp:ListItem>
+                                    <asp:ListItem Value="10" Text="10th"></asp:ListItem>
+                                    <asp:ListItem Value="11" Text="11th"></asp:ListItem>
+                                    <asp:ListItem Value="12" Text="12th"></asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                             <div class="col-sm-3 form-control-static">
                                 <span runat="server" visible='<%# Eval("SchoolGrade_Req") %>' class="text-danger glyphicon glyphicon-asterisk glyphicon-sm SchoolGradeReq"></span>
@@ -69,7 +92,7 @@
                             </div>
                         </div>
 
-
+               <%-- DOB --%>
                         <div class="form-group" runat="server" visible='<%# (bool)Eval("DOB_Prompt")%>'>
                             <label class="col-sm-3 control-label">
                                 <asp:Label runat="server" Text="registration-form-dob"></asp:Label>
@@ -90,6 +113,7 @@
                             </div>
                         </div>
 
+                        <%--Age --%>
                         <div class="form-group" runat="server" visible='<%# (bool)Eval("Age_Prompt")%>'>
                             <label class="col-sm-3 control-label">
                                 <asp:Label runat="server" Text="registration-form-age"></asp:Label>
@@ -139,6 +163,7 @@
                         </div>
                     </asp:Panel>
 
+                    <%--program--%>
                     <asp:Panel ID="Panel3" runat="server" Visible="False">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">
@@ -535,6 +560,7 @@
                             </div>
                         </div>
 
+                        <%--school name--%>
                         <div class="form-group" runat="server" visible='<%# (bool)Eval("SchoolName_Prompt")%>'>
                             <label class="col-sm-3 control-label">
                                 <asp:Label runat="server" Text="registration-form-school"></asp:Label>
@@ -802,6 +828,7 @@
                             </div>
                         </div>
 
+                        <%-- Terms of use --%>
                         <div class="form-group" runat="server" visible='<%# (bool)Eval("TermsOfUseflag_Prompt") %>'>
                             <label class="col-sm-3 control-label">
                                 <asp:Label runat="server" Text="registration-form-terms"></asp:Label>
@@ -821,17 +848,25 @@
                                     ErrorMessage="You must accept the terms of use." SetFocusOnError="True">you must accept the terms</asp:CustomValidator>
                             </div>
                         </div>
-
+                        <%-- Share --%>
                         <div class="form-group" runat="server" visible='<%# (bool)Eval("ShareFlag_Prompt") %>'>
                             <label class="col-sm-3 control-label">
                                 <asp:Label runat="server" Text="registration-form-information-sharing"></asp:Label>
                             </label>
                             <label class="col-sm-9 form-control-static">
                                 <div class="row">
-                                    <asp:CheckBox ID="ShareFlag" runat="server" ReadOnly="False" Checked="true" CssClass="col-xs-1 gra-registration-checkbox"></asp:CheckBox>
+                                    <asp:CheckBox ID="ShareFlag" runat="server" ReadOnly="false" CssClass="col-xs-1 gra-registration-checkbox gra-share-container required-asterisk-aspcheckbox"></asp:CheckBox>
+                                    <span runat="server" visible='<%# Eval("ShareFlag_Req") %>' class="text-danger glyphicon glyphicon-asterisk glyphicon-sm ShareflagReq"></span>
                                     <asp:Label runat="server" Text="registration-privacy-details" CssClass="col-xs-10"></asp:Label>
                                 </div>
                             </label>
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <asp:CustomValidator
+                                    ClientValidationFunction="ShareFlagValidation"
+                                    EnableClientScript="true"
+                                    runat="server" Enabled='<%# Eval("ShareFlag_Req") %>'
+                                    ErrorMessage="You must accept the media release." SetFocusOnError="True">you must accept the terms</asp:CustomValidator>
+                            </div>
                         </div>
 
                         <asp:Panel ID="pnlConsent" runat="server" Visible="False">
