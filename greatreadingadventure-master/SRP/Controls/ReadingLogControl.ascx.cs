@@ -9,11 +9,16 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace GRA.SRP.Controls {
     public partial class ReadingLogControl : System.Web.UI.UserControl {
+
         protected bool ShowModal { get; set; }
         protected void Page_Load(object sender, EventArgs e) {
+
+            
+
             if(!IsPostBack) {
                 if(Session["Patron"] == null) {
                     Response.Redirect("~");
@@ -57,9 +62,9 @@ namespace GRA.SRP.Controls {
 
                     if(int.Parse(singleOption.Value) == (int)ActivityType.Books) {
                         countSubmittedLabel.Visible = false;
-                        readingActivityField.Text = "1";
-                        readingActivityField.Attributes.Remove("style");
-                        readingActivityField.Attributes.Add("style", "display: none;");
+                        //readingActivityField.Text = "1";
+                        //readingActivityField.Attributes.Remove("style");
+                        //readingActivityField.Attributes.Add("style", "display: none;");
                         activityTypeSelector.Attributes.Remove("style");
                         activityTypeSelector.Attributes.Add("style", "display: none;");
                         activityTypeSingleLabel.Visible = false;
@@ -78,14 +83,14 @@ namespace GRA.SRP.Controls {
         }
 
         protected void SubmitActivity() {
-            var txtCount = readingActivityField.Text.Trim();
+            //var txtCount = readingActivityField.Text.Trim();
             var intCount = 0;
-            if(txtCount.Length == 0 || !int.TryParse(txtCount, out intCount) || intCount < 0) {
+           /* if(txtCount.Length == 0 || !int.TryParse(txtCount, out intCount) || intCount < 0) {
                 Session[SessionKey.PatronMessage] = "You must enter how much you've read as a positive whole number.";
                 Session[SessionKey.PatronMessageLevel] = PatronMessageLevels.Danger;
                 Session[SessionKey.PatronMessageGlyphicon] = "remove";
                 return;
-            }
+            }*/
 
             var selectedActivityType = activityTypeSelector.SelectedValue;
 
@@ -155,7 +160,7 @@ namespace GRA.SRP.Controls {
                              && int.Parse(activityTypeSelector.Items[0].Value) == (int)ActivityType.Books;
 
             if(!bookButton) {
-                readingActivityField.Text = string.Empty;
+                //readingActivityField.Text = string.Empty;
             }
             authorField.Text = string.Empty;
             titleField.Text = string.Empty;
@@ -163,9 +168,9 @@ namespace GRA.SRP.Controls {
             // set message and earned badges
             string earnedMessage = new PointCalculation().EarnedMessage(earnedBadges, points);
             if(string.IsNullOrEmpty(earnedMessage)) {
-                Session[SessionKey.PatronMessage] = "<strong>Good job!</strong> Your reading activity has been logged.";
+                Session[SessionKey.PatronMessage] = "<strong>Great job!</strong> You have read for at least 15 minutes!";
             } else {
-                Session[SessionKey.PatronMessage] = string.Format("<strong>Good job!</strong> Your reading activity has been logged. <strong>{0}</strong>",
+                Session[SessionKey.PatronMessage] = string.Format("<strong>Great job!</strong> You have read for at least 15 minutes! <strong>{0}</strong>",
                                                                   earnedMessage);
             }
             Session[SessionKey.PatronMessageLevel] = PatronMessageLevels.Success;
@@ -203,6 +208,30 @@ namespace GRA.SRP.Controls {
         protected void submitDetailsButton_Click(object sender, EventArgs e) {
             // log activity
             SubmitActivity();
+            
+        }
+
+        protected void MyDayRenderer(object sender, DayRenderEventArgs e)
+        {
+
+            var LoggedInPatron = (Patron)Session["Patron"];
+            String str = LoggedInPatron.PID.ToString();
+            int pid = int.Parse(str);
+            var ds = PatronPoints.GetAll(pid);
+            DataTable table = ds.Tables[0];
+            List<DateTime> datetime = new List<DateTime>();
+            foreach (DataRow row in table.Rows)
+            {
+                datetime.Add(row.Field<DateTime>(3));
+            }
+
+            foreach (DateTime d in datetime)
+            {
+                if (e.Day.Date == new DateTime(d.Year, d.Month, d.Day))
+                {
+                    e.Cell.BackColor = System.Drawing.Color.Aqua;
+                } 
+            }       
         }
     }
 }

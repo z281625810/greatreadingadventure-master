@@ -12,10 +12,6 @@
             <label class="btn btn-default active">
                 <input type="radio" name="status-display" autocomplete="off" checked value="0"><span class="glyphicon glyphicon-dashboard"></span>
             </label>
-           
-            <label class="btn btn-default">
-                <input type="radio" name="status-display" autocomplete="off" value="2"><span class="glyphicon glyphicon-star"></span>
-            </label>
         </div>
     </div>
 </div>

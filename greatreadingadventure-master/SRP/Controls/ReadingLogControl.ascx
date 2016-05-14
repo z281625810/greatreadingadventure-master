@@ -14,19 +14,21 @@
     </div>
     <div class="row">
         <div class="form-inline text-center">
-             <div class="col-xs-12" style="display: none;" id="readingLogControlMessageError">
+            <%--  <div class="col-xs-12" style="display: none;" id="readingLogControlMessageError">
                 <p class="text-danger" style="font-weight: bold;">Please enter how much you've read.</p>
-            </div>
+            </div>--%>
             <div class="col-xs-12">
                 <div class="form-group" id="readingLogControlFormGroup">
                     <label for="readingActivityField" runat="server" id="countSubmittedLabel" cssclass="readinglog-spacing">
                         <asp:Label runat="server" Text="readinglog-reading-prompt"></asp:Label></label>
                   <div class="block-center" style="display: inline-block;">
-                        <asp:TextBox ID="readingActivityField"
+                       <%-- <asp:TextBox ID="readingActivityField"
                             runat="server"
                             CssClass="form-control"
                             MaxLength="3"
-                            Width="4em"></asp:TextBox>
+                            Width="4em"
+                            text="15"
+                            ReadOnly="true"></asp:TextBox>--%>  
                     </div> 
                     <asp:DropDownList ID="activityTypeSelector" CssClass="form-control readinglog-spacing" runat="server"></asp:DropDownList>
                     <label class="readinglog-spacing">
@@ -41,12 +43,31 @@
                         OnClientClick="return ValidateLogEntry();"
                         OnClick="submitButton_Click"></asp:LinkButton>
                 </div>
+                <asp:Panel id="pnlCalendar" runat="server" 
+                 style="POSITION: center" >
+             <asp:calendar id="Calendar1" runat="server" CellPadding="4" 
+                  BorderColor="#999999" Font-Names="Verdana" Font-Size="8pt" 
+                  Height="100%" ForeColor="Black" DayNameFormat="full" ShowGridLines="true"
+                  Width="100%" BackColor="White" style="margin-top: 40px; margin-left: auto; margin-right:auto;"
+                 ondayrender="MyDayRenderer" >
+              <TodayDayStyle ForeColor="Black" BackColor="#CCCCCC"></TodayDayStyle>
+              <SelectorStyle BackColor="#CCCCCC"></SelectorStyle>
+              <NextPrevStyle VerticalAlign="Bottom"></NextPrevStyle>
+              <DayHeaderStyle Font-Size="7pt" Font-Bold="True" BackColor="#CCCCCC">
+              </DayHeaderStyle>
+              <SelectedDayStyle Font-Bold="True" ForeColor="White" BackColor="#666666">
+              </SelectedDayStyle>
+              <TitleStyle Font-Bold="True" BorderColor="Black" BackColor="#999999">
+              </TitleStyle>
+             </asp:calendar>
+            </asp:Panel>
             </div>
+
             <div class="col-xs-12">
                 <div class="form-group">
                     <asp:CheckBox runat="server"
                         ID="enterBookDetails"
-                        Text="I want to enter book details"
+                        Text="I would like to share more about what I am reading."
                         CssClass="readinglog-checkbox checkbox-inline"></asp:CheckBox>
                 </div>
             </div>
@@ -123,7 +144,7 @@
                 });
             }
         });
-        function ValidateLogEntry() {
+       /* function ValidateLogEntry() {
             $('.reading-log-submit').button('loading');
             var elems = $("input[id$='readingActivityField']");
             var valid = false;
@@ -151,6 +172,6 @@
                 $('.reading-log-submit').button('reset');
             }
             return valid;
-        }
+        }*/
     </script>
 </asp:Panel>

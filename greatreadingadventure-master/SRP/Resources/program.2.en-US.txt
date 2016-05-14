@@ -221,8 +221,8 @@ badges-badgegallery-button=Badge Gallery
 ;;  Reading log
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 readinglog-reading-log=Reading log
-readinglog-description=Log your reading below. If you want to enter book details, check the "I want to enter book details" checkbox first!
-readinglog-reading-prompt=I read
+readinglog-description=Please log the days you have read for at least 15 minutes on the calendar below. Please only submit one day at a time. If  you would like to share the title and the author of the book you have read, please check the ‘I would like to share more about what I am reading’ box.
+readinglog-reading-prompt=I read for more than 15 minutes today!
 readinglog-submit=Submit
 readinglog-read-a-book=I read a book!
 readinglog-details-header=Enter book details

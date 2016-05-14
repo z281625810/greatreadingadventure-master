@@ -68,6 +68,7 @@
                                 <%-- <asp:TextBox ID="SchoolGrade" runat="server" CssClass="form-control required-asterisk" data-asterisk="SchoolGradeReq"></asp:TextBox> 
                                     --%>
                                 <asp:DropDownList ID="SchoolGrade" runat="server" CssClass="form-control required-asterisk" data-asterisk="SchoolGradeReq">
+                                    <asp:ListItem Value="" Text="[Select a Value]"></asp:ListItem>
                                     <asp:ListItem Value="-1" Text="Pre-K (all early learners)"></asp:ListItem>
                                     <asp:ListItem Value="0" Text="K"></asp:ListItem>
                                     <asp:ListItem Value="1" Text="1st"></asp:ListItem>
@@ -264,9 +265,9 @@
                                 <asp:RequiredFieldValidator runat="server" Enabled='<%# Eval("EmailAddress_Req") %>'
                                     ControlToValidate="EmailAddress" Display="Dynamic" ErrorMessage="Email address is required"
                                     SetFocusOnError="True">required</asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="EmailAddress" Display="Dynamic" ErrorMessage="Email address is not valid"
+                                <asp:RegularExpressionValidator runat="server" ControlToValidate="EmailAddress" Display="Dynamic" ErrorMessage="Email address is not valid, if you do not have a valid email please include srpbtv@gmail.com"
                                     SetFocusOnError="True"
-                                    ValidationExpression="[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?">invalid</asp:RegularExpressionValidator>
+                                    ValidationExpression="[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?">invalid, if you do not have a valid email please include srpbtv@gmail.com</asp:RegularExpressionValidator>
                             </div>
                         </div>
 

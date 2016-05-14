@@ -69,7 +69,7 @@
                                 <td>
                                     <%# Eval("AwardReason") %><%# ((bool)Eval("isEvent") ? string.Format(" <strong>{0}</strong>, secret code: <em>{1}</em>",  Eval("EventTitle"),  Eval("EventCode")) : 
                          ((bool)Eval("isBookList")  ? string.Format(": <strong>{0}</strong>",  Eval("ListName")) :
-                         ((bool)Eval("isReading") ? FormatReading(Eval("Author").ToString(), Eval("Title").ToString(), Eval("Review").ToString(), (int)Eval("PRID")) + string.Format(", <strong>{0} {1}</strong>", Eval("ReadingAmount"), Eval("ReadingType")) :
+                         ((bool)Eval("isReading") ? FormatReading(Eval("Author").ToString(), Eval("Title").ToString(), Eval("Review").ToString(), (int)Eval("PRID"))  :
                          ((bool)Eval("isGameLevelActivity") ? string.Format(": (<strong>{0}</strong>)", Eval("GameName")) : 
                          " (Unknown)"))))%>
                                 </td>
@@ -86,3 +86,5 @@
 </div>
 
 <asp:Label ID="lblPID" runat="server" Text="" Visible="false"></asp:Label>
+
+<%-- + string.Format(", <strong>{0} {1}</strong>", Eval("ReadingAmount"), Eval("ReadingType")) --%><%--  --%>

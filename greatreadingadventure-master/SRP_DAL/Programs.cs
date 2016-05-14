@@ -907,6 +907,12 @@ namespace GRA.SRP.DAL
             }
         }
 
+        public static DataSet GetLeaderboard1()
+        {
+            
+            return SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure, "app_PatronPoints_GetProgramLeaderboard1");
+        }
+
         #endregion
 
     }//end class
