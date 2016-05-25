@@ -85,12 +85,29 @@ namespace GRA.SRP.Controls {
         protected void SubmitActivity() {
             //var txtCount = readingActivityField.Text.Trim();
             var intCount = 0;
-           /* if(txtCount.Length == 0 || !int.TryParse(txtCount, out intCount) || intCount < 0) {
-                Session[SessionKey.PatronMessage] = "You must enter how much you've read as a positive whole number.";
-                Session[SessionKey.PatronMessageLevel] = PatronMessageLevels.Danger;
-                Session[SessionKey.PatronMessageGlyphicon] = "remove";
+            /* if(txtCount.Length == 0 || !int.TryParse(txtCount, out intCount) || intCount < 0) {
+                 Session[SessionKey.PatronMessage] = "You must enter how much you've read as a positive whole number.";
+                 Session[SessionKey.PatronMessageLevel] = PatronMessageLevels.Danger;
+                 Session[SessionKey.PatronMessageGlyphicon] = "remove";
+                 return;
+             }*/
+            
+            
+            
+            DateTime temp = Calendar1.SelectedDate;
+            if (temp == new DateTime(1, 1, 1))
+            {
+                temp = DateTime.Today;
+            }
+            
+
+            if (temp > DateTime.Today)
+            {
+                Session[SessionKey.PatronMessage] = "Sorry, you can only select the day in the past, not in the future";
+                Session[SessionKey.PatronMessageLevel] = PatronMessageLevels.Warning;
+                Session[SessionKey.PatronMessageGlyphicon] = "exclamation-sign";
                 return;
-            }*/
+            }
 
             var selectedActivityType = activityTypeSelector.SelectedValue;
 
@@ -136,24 +153,25 @@ namespace GRA.SRP.Controls {
             //points = (int)Math.Ceiling(computedPoints);
             points = 1;
             // ensure they aren't over teh day total
-            var allPointsToday = PatronPoints.GetTotalPatronPoints(patronId, DateTime.Now);
+            var allPointsToday = PatronPoints.GetTotalPatronPoints(patronId, temp);
             //var allPointsToday = 1;
             //int maxPointsPerDayForLogging = SRPSettings.GetSettingValue("MaxPtsDay").SafeToInt();
             int maxPointsPerDayForLogging = 1;
-            if (allPointsToday == maxPointsPerDayForLogging) {
-                Session[SessionKey.PatronMessage] = "Sorry but you have already submited your log once today. You can only earn one point a day. Keep reading and come back tomorrow!";
+            if (allPointsToday >= maxPointsPerDayForLogging) {
+                Session[SessionKey.PatronMessage] = "Sorry but you have already submited your log once in that day. You can only earn one point a day. Keep reading and come back tomorrow!";
                 Session[SessionKey.PatronMessageLevel] = PatronMessageLevels.Warning;
                 Session[SessionKey.PatronMessageGlyphicon] = "exclamation-sign";
                 return;
             }
 
+            
             var earnedBadges = pa.AwardPointsToPatron(points: points,
                 reason: PointAwardReason.Reading,
                 MGID: 0,
                 readingActivity: (ActivityType)pc.ActivityTypeId,
                 readingAmount: intCount,
                 author: authorField.Text,
-                title: titleField.Text);
+                title: titleField.Text,review: "",eventCode:"",eventID:0,bookListID:0,forceDate: temp);
 
             // clear out the form
             var bookButton = activityTypeSelector.Items.Count == 1
@@ -213,7 +231,6 @@ namespace GRA.SRP.Controls {
 
         protected void MyDayRenderer(object sender, DayRenderEventArgs e)
         {
-
             var LoggedInPatron = (Patron)Session["Patron"];
             String str = LoggedInPatron.PID.ToString();
             int pid = int.Parse(str);

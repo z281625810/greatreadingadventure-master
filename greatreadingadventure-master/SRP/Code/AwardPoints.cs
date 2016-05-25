@@ -34,7 +34,7 @@ namespace GRA.SRP.Controls {
         // returns: a string based list of the badges they earned, or an empty string
         public string AwardPointsToPatron(int points, PointAwardReason reason,
                 // Minigame
-                int MGID = 0,
+                int MGID = 0, 
                 // reading
                 ActivityType readingActivity = ActivityType.Pages, int readingAmount = 0, string author= "", string title= "", string review= "",
                 // event
@@ -44,8 +44,14 @@ namespace GRA.SRP.Controls {
 
                 DateTime? forceDate = null
             ) {
-            if(forceDate != null)
+
+            
+
+            if (forceDate != null)
                 now = (DateTime)forceDate;
+
+            //marker
+            //System.Diagnostics.Debug.WriteLine("im in award function");
 
             string retValue= string.Empty;
 

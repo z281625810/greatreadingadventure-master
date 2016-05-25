@@ -67,15 +67,6 @@ namespace GRA.SRP {
         protected global::GRA.SRP.Controls.LeaderBoardControl LeaderBoardControl;
         
         /// <summary>
-        /// Feed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::GRA.SRP.Controls.Feed Feed;
-        
-        /// <summary>
         /// Status control.
         /// </summary>
         /// <remarks>

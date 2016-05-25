@@ -52,7 +52,8 @@
         <div class="col-sm-3">
             <div class="row" style="margin-top: 2em;">
                 <div class="col-xs-12">
-                    <cc:Feed runat="server" ID="Feed" />
+                   <%-- <cc:Feed runat="server" ID="Feed" /> --%> 
+                    <img src="childbike.jpg" style="width:100%" />
                 </div>
             </div>
         </div>
