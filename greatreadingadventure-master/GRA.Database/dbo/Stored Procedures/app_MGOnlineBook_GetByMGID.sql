@@ -1,6 +1,0 @@
-﻿
-CREATE PROCEDURE [dbo].[app_MGOnlineBook_GetByMGID] @MGID INT
-AS
-SELECT *
-FROM [MGOnlineBook]
-WHERE MGID = @MGID

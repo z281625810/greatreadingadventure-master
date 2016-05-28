@@ -1,6 +1,0 @@
-2016-05-17 11:34:41.7707|DEBUG|GRA.SRP.Controls.ReadingLogControl|Cache miss looking up GRA.PointGameConversion.1.0
-2016-05-17 11:34:41.7757|DEBUG|GRA.SRP.Controls.ReadingLogControl|Cache miss looking up GRA.PointGameConversion.1.1
-2016-05-17 11:34:41.7757|DEBUG|GRA.SRP.Controls.ReadingLogControl|Cache miss looking up GRA.PointGameConversion.1.3
-2016-05-17 11:38:31.3524|DEBUG|GRA.SRP.Controls.ReadingLogControl|Cache miss looking up GRA.PointGameConversion.2.0
-2016-05-17 11:38:31.3524|DEBUG|GRA.SRP.Controls.ReadingLogControl|Cache miss looking up GRA.PointGameConversion.2.1
-2016-05-17 11:38:31.3524|DEBUG|GRA.SRP.Controls.ReadingLogControl|Cache miss looking up GRA.PointGameConversion.2.3

@@ -1,6 +1,0 @@
-﻿
-CREATE PROCEDURE [dbo].[app_Award_Delete] @AID INT
-AS
-DELETE
-FROM [Award]
-WHERE AID = @AID
