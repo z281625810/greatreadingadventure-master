@@ -62,14 +62,16 @@
             </asp:Panel>
             </div>
 
-            <div class="col-xs-12">
+            <div class="col-xs-12" style="visibility:hidden">
                 <div class="form-group">
                     <asp:CheckBox runat="server"
                         ID="enterBookDetails"
                         Text="I would like to share more about what I am reading."
+                        checked="true"
                         CssClass="readinglog-checkbox checkbox-inline"></asp:CheckBox>
                     <asp:CheckBox runat="server"
                         ID="enterHealthChoiceDetails"
+                        checked="true"
                         Text="I made a healthy choice today and would like to share more about this choice."
                         CssClass="readinglog-checkbox checkbox-inline"></asp:CheckBox>
                 </div>

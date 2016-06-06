@@ -24,6 +24,15 @@ namespace GRA.SRP.Controls {
 
             int tp = PatronPoints.GetTotalPatronPoints(patron.PID);
             lblPoints.Text = tp.ToInt();
+            if (tp <= 1)
+            {
+                days.Text = " day";
+            }
+            else
+            {
+                days.Text = " days";
+            }
+            
             var pgm = Programs.FetchObject(patron.ProgID);
             if(pgm.ProgramGameID > 0) {
                 if(ProgramGame.FetchObject(pgm.ProgramGameID) != null) {

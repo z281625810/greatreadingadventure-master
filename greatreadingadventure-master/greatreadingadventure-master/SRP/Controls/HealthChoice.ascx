@@ -24,7 +24,7 @@
             <table class="table table-compact table-alternating">
                 <thead>
                     <tr>
-                        <th>Health Choice</th>
+                        <th>Healthy Choice</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +40,6 @@
                 </tbody>
             </table>
         </asp:Panel>
-        <asp:Label Text="books-read-none" runat="server" ID="noHealthLabel" Visible="false"></asp:Label>
+        <asp:Label Text="No healthy choice information logged." runat="server" ID="noHealthLabel" Visible="false"></asp:Label>
     </div>
 </div>
